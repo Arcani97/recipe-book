@@ -22,8 +22,7 @@ Hooks.once("init", () => {
     }
   });
 
-  // Configurável porque cada sistema de jogo guarda a quantidade do item
-  // em um campo diferente (dnd5e e a maioria dos sistemas usam "system.quantity").
+  // Configurável porque cada sistema de jogo guarda a quantidade do item em um campo diferente (dnd5e e a maioria dos sistemas usam "system.quantity").
   game.settings.register(MODULE_ID, "quantityPath", {
     name: "RECIPE-BOOK.Settings.QuantityPath.Name",
     hint: "RECIPE-BOOK.Settings.QuantityPath.Hint",
@@ -41,17 +40,11 @@ Hooks.on("updateSetting", setting => {
 
 Hooks.once("ready", () => {
   const mod = game.modules.get(MODULE_ID);
-  // Exposto para quem quiser abrir via macro:
-  // game.modules.get("recipe-book").api.RecipeBookApp
+  // Exposto para quem quiser abrir via macro: game.modules.get("recipe-book").api.RecipeBookApp
   mod.api = { RecipeBookApp, RecipeEditorApp };
 });
 
-/**
- * Abre o Livro de Receitas — mas, se quem está tentando abrir for um
- * jogador sem nenhum personagem próprio, mostra um aviso em vez de
- * abrir a janela (não faz sentido um jogador sem personagem usar o
- * livro, já que craftar sempre precisa de um personagem dono).
- */
+/** Abre o Livro de Receitas — mas, se quem está tentando abrir for um jogador sem nenhum personagem próprio, mostra um aviso em vez de abrir a janela (não faz sentido um jogador sem personagem usar o livro, já que craftar sempre precisa de um personagem dono). */
 async function openRecipeBook() {
   if (!game.user.isGM) {
     const myActors = game.actors.filter(a => a.isOwner);
@@ -67,12 +60,7 @@ async function openRecipeBook() {
   new RecipeBookApp().render(true);
 }
 
-/**
- * Adiciona um botão no topo da aba de Itens da barra lateral (acima de
- * "Create Item"/"Create Folder") para abrir o Livro de Receitas — no
- * mesmo estilo que o módulo Party Resources faz na aba de Atores —
- * em vez de um ícone na barra de ferramentas do canvas.
- */
+/** Adiciona um botão no topo da aba de Itens da barra lateral (acima de "Create Item"/"Create Folder") para abrir o Livro de Receitas — no mesmo estilo que o módulo Party Resources faz na aba de Atores — em vez de um ícone na barra de ferramentas do canvas. */
 Hooks.on("renderItemDirectory", (app, html) => {
   try {
     const $html = html?.jquery ? html : $(html);
@@ -93,13 +81,7 @@ Hooks.on("renderItemDirectory", (app, html) => {
   }
 });
 
-/**
- * Integra o controle de abrir/fechar a Janela de Criação diretamente
- * na lista de jogadores nativa do Foundry (o painel que mostra quem
- * está online, no canto inferior esquerdo) — no mesmo estilo que
- * módulos como o Breaktime fazem, em vez de uma janela flutuante à
- * parte. Só aparece para o Mestre; jogadores não veem nada aqui.
- */
+/** Integra o controle de abrir/fechar a Janela de Criação diretamente na lista de jogadores nativa do Foundry (o painel que mostra quem está online, no canto inferior esquerdo) — no mesmo estilo que módulos como o Breaktime fazem, em vez de uma janela flutuante à parte. Só aparece para o Mestre; jogadores não veem nada aqui. */
 Hooks.on("renderPlayers", (app, html) => {
   if (!game.user.isGM) return;
 
@@ -126,8 +108,7 @@ Hooks.on("renderPlayers", (app, html) => {
       await game.settings.set(MODULE_ID, "craftingWindowOpen", !current);
     });
 
-    // Mesmo seletor usado pelo módulo Breaktime para se inserir na
-    // lista de jogadores: "#players-active .players-list".
+    // Mesmo seletor usado pelo módulo Breaktime para se inserir na lista de jogadores: "#players-active .players-list".
     const anchor = $("#players-active .players-list", html);
     if (anchor.length) control.insertAfter(anchor);
     else $(html).append(control);

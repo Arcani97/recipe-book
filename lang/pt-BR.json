@@ -25,7 +25,7 @@
   "RECIPE-BOOK.Editor.TagsPlaceholder": "separadas por vírgula, ex.: poções, alquimia",
   "RECIPE-BOOK.Editor.Ingredients": "Ingredientes",
   "RECIPE-BOOK.Editor.Results": "Produtos",
-  "RECIPE-BOOK.Editor.DropHint": "Arraste itens do compêndio, do mundo ou de uma ficha até aqui.",
+  "RECIPE-BOOK.Editor.DropHint": "Arraste itens do compêndio ou do mundo até aqui.",
   "RECIPE-BOOK.Editor.AssignTo": "Atribuir a personagens",
   "RECIPE-BOOK.Editor.NoActors": "Nenhum personagem encontrado.",
   "RECIPE-BOOK.Editor.Save": "Salvar",

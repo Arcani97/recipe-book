@@ -16,7 +16,9 @@
 <div class="columns">
   <div class="drop-zone" data-drop="ingredients">
     <h3>{{localize "RECIPE-BOOK.Editor.Ingredients"}}</h3>
-    <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    {{#unless recipe.ingredients.length}}
+      <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    {{/unless}}
     <ul>
       {{#each recipe.ingredients as |ing i|}}
         <li>
@@ -31,7 +33,9 @@
 
   <div class="drop-zone" data-drop="results">
     <h3>{{localize "RECIPE-BOOK.Editor.Results"}}</h3>
-    <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    {{#unless recipe.results.length}}
+      <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    {{/unless}}
     <ul>
       {{#each recipe.results as |res i|}}
         <li>

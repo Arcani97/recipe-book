@@ -6,18 +6,9 @@ import { RecipeEditorApp } from "./recipe-editor-app.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-/**
- * Livro de receitas: para o Mestre, lista e gerencia todas as
- * receitas do mundo; para jogadores, mostra as receitas atribuídas ao
- * personagem selecionado e permite fabricá-las.
- */
+/** Livro de receitas: para o Mestre, lista e gerencia todas as receitas do mundo; para jogadores, mostra as receitas atribuídas ao personagem selecionado e permite fabricá-las. */
 export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
-  /**
-   * Instâncias abertas no momento, usada por main.js para saber quais
-   * janelas re-renderizar quando um setting relevante muda (não damos
-   * como certo onde/como o Foundry rastreia instâncias de ApplicationV2
-   * internamente, então mantemos nosso próprio registro simples).
-   */
+  /** Instâncias abertas no momento, usada por main.js para saber quais janelas re-renderizar quando um setting relevante muda (não damos como certo onde/como o Foundry rastreia instâncias de ApplicationV2 internamente, então mantemos nosso próprio registro simples). */
   static openInstances = new Set();
 
   static DEFAULT_OPTIONS = {
@@ -67,10 +58,7 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
         assignedGroups: getPlayerCharacterGroups(r.assignedActorIds)
       }));
     } else {
-      // Personagem "ativo" no livro: lembra a última escolha do
-      // jogador (via flag do usuário, persiste entre sessões) e cai
-      // para o primeiro personagem próprio caso não haja escolha
-      // salva ou ela não seja mais válida.
+      // Personagem "ativo" no livro: lembra a última escolha do jogador (via flag do usuário, persiste entre sessões) e cai para o primeiro personagem próprio caso não haja escolha salva ou ela não seja mais válida.
       if (!this.selectedActorId || !myActors.some(a => a.id === this.selectedActorId)) {
         const lastActorId = game.user.getFlag(MODULE_ID, "lastSelectedActorId");
         this.selectedActorId = myActors.some(a => a.id === lastActorId) ? lastActorId : myActors[0]?.id ?? null;
@@ -109,11 +97,7 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
     };
   }
 
-  /**
-   * Agrupa receitas pelas tags. Uma receita com múltiplas tags aparece
-   * em cada grupo correspondente. Receitas sem tag ficam num grupo
-   * separado ao final.
-   */
+  /** Agrupa receitas pelas tags. Uma receita com múltiplas tags aparece em cada grupo correspondente. Receitas sem tag ficam num grupo separado ao final. */
   _groupByTag(recipes) {
     const byTag = new Map();
     const untagged = [];
@@ -171,8 +155,7 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!confirmed) return;
     await deleteRecipe(id);
 
-    // Fecha (com aviso) qualquer Editor de Receita que estivesse aberto
-    // editando essa mesma receita, para não deixá-lo "órfão".
+    // Fecha (com aviso) qualquer Editor de Receita que estivesse aberto editando essa mesma receita, para não deixá-lo "órfão".
     for (const editor of RecipeEditorApp.openInstances) {
       if (editor.recipeId === id) {
         ui.notifications.warn(game.i18n.localize("RECIPE-BOOK.Errors.RecipeNoLongerExists"));

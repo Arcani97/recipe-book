@@ -4,13 +4,7 @@ import { getPlayerCharacterGroups } from "../actor-groups.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-/**
- * Confirma no editor de texto rico o conteúdo digitado, simulando um
- * clique real no botão de salvar (disquete) da barra de ferramentas
- * do próprio editor. Chamar o método .save() diretamente não é
- * suficiente: o elemento só sincroniza corretamente o valor exibido
- * quando o clique parte de uma interação genuína do usuário.
- */
+/** Confirma no editor de texto rico o conteúdo digitado, simulando um clique real no botão de salvar (disquete) da barra de ferramentas do próprio editor. Chamar o método .save() diretamente não é suficiente: o elemento só sincroniza corretamente o valor exibido quando o clique parte de uma interação genuína do usuário. */
 function commitProseMirror(proseMirror) {
   const saveButton = proseMirror?.querySelector('.editor-menu [data-action="save"]');
   if (saveButton) {
@@ -20,11 +14,7 @@ function commitProseMirror(proseMirror) {
   }
 }
 
-/**
- * Janela de criação e edição de receitas. Usada pelo Mestre para
- * definir nome, tags, descrição, ingredientes, produtos e quais
- * personagens recebem a receita.
- */
+/** Janela de criação e edição de receitas. Usada pelo Mestre para definir nome, tags, descrição, ingredientes, produtos e quais personagens recebem a receita. */
 export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
   /** Instâncias abertas no momento, usada para fechar editores órfãos quando a receita deles é excluída. */
   static openInstances = new Set();
@@ -77,13 +67,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     return { recipe, playerGroups };
   }
 
-  /**
-   * Toda a interatividade desta janela (formulário, arrastar itens,
-   * seletor de imagem, remover entradas) é conectada aqui na mão, com
-   * addEventListener puro, em vez de usar a configuração "form"/
-   * "actions" do ApplicationV2 — dando controle total sobre como e
-   * quando cada campo é lido e sincronizado.
-   */
+  /** Toda a interatividade desta janela (formulário, arrastar itens, seletor de imagem, remover entradas) é conectada aqui na mão, com addEventListener puro, em vez de usar a configuração "form"/"actions" do ApplicationV2 — dando controle total sobre como e quando cada campo é lido e sincronizado. */
   async _onRender(context, options) {
     await super._onRender(context, options);
     RecipeEditorApp.openInstances.add(this);
@@ -112,20 +96,14 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
       link.addEventListener("click", ev => this._onRemoveEntry(ev));
     });
 
-    // O elemento de texto rico exibe, quando fechado, o conteúdo que
-    // veio do último render — não necessariamente o que acabou de ser
-    // salvo internamente. Sincronizamos e re-renderizamos ao fechar
-    // para que essa prévia sempre reflita o texto atual, mesmo antes
-    // de a receita em si ser salva.
+    // O elemento de texto rico exibe, quando fechado, o conteúdo que veio do último render — não necessariamente o que acabou de ser salvo internamente. Sincronizamos e re-renderizamos ao fechar para que essa prévia sempre reflita o texto atual, mesmo antes de a receita em si ser salva.
     const proseMirror = this.element.querySelector("prose-mirror[name='description']");
     proseMirror?.addEventListener("close", () => {
       if (proseMirror.value !== undefined) this.data.description = proseMirror.value;
       setTimeout(() => this.render(false), 0);
     });
 
-    // O botão de salvar principal fecha a janela ao terminar; qualquer
-    // outro jeito de disparar o envio do formulário (ex.: apertar
-    // Enter num campo) não deve fechar a janela toda, só persistir.
+    // O botão de salvar principal fecha a janela ao terminar; qualquer outro jeito de disparar o envio do formulário (ex.: apertar Enter num campo) não deve fechar a janela toda, só persistir.
     const submitButton = this.element.querySelector("button[type='submit']");
     submitButton?.addEventListener("click", () => {
       this._closeAfterSave = true;
@@ -137,12 +115,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     return super.close(options);
   }
 
-  /**
-   * Garante que a última alteração digitada no editor de texto rico
-   * esteja sincronizada com o valor "oficial" do elemento antes de a
-   * lermos: tira o foco do campo (se necessário) e confirma o
-   * conteúdo através dele.
-   */
+  /** Garante que a última alteração digitada no editor de texto rico esteja sincronizada com o valor "oficial" do elemento antes de a lermos: tira o foco do campo (se necessário) e confirma o conteúdo através dele. */
   _commitDescriptionEditor() {
     const proseMirror = this.element.querySelector("prose-mirror[name='description']");
     if (!proseMirror) return;
@@ -153,14 +126,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (proseMirror.value !== undefined) this.data.description = proseMirror.value;
   }
 
-  /**
-   * Lê os campos de Nome, Tags, descrição e os personagens marcados
-   * diretamente do formulário atual e grava em this.data. Necessário
-   * porque ações como arrastar um ingrediente, remover uma entrada ou
-   * trocar a imagem re-renderizam a janela para atualizar a lista —
-   * sem essa sincronização, qualquer edição ainda não salva nesses
-   * campos se perderia no re-render.
-   */
+  /** Lê os campos de Nome, Tags, descrição e os personagens marcados diretamente do formulário atual e grava em this.data. Necessário porque ações como arrastar um ingrediente, remover uma entrada ou trocar a imagem re-renderizam a janela para atualizar a lista — sem essa sincronização, qualquer edição ainda não salva nesses campos se perderia no re-render. */
   _syncSimpleFields() {
     const nameInput = this.element.querySelector("[name='name']");
     if (nameInput) this.data.name = nameInput.value;
@@ -187,8 +153,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     if (!data?.uuid || data.type !== "Item") return;
 
-    // Se esse item já está na lista, só incrementa a quantidade em vez
-    // de criar uma entrada duplicada.
+    // Se esse item já está na lista, só incrementa a quantidade em vez de criar uma entrada duplicada.
     const existingEntry = this.data[list].find(entry => entry.uuid === data.uuid);
     if (existingEntry) {
       existingEntry.quantity += 1;
@@ -235,10 +200,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     event.preventDefault();
     const form = event.currentTarget;
 
-    // Se o cursor ainda estiver dentro de um campo no momento do
-    // clique em Salvar, a última alteração pode não ter sido
-    // sincronizada ainda. Forçar a perda de foco garante isso antes
-    // de ler os dados do formulário.
+    // Se o cursor ainda estiver dentro de um campo no momento do clique em Salvar, a última alteração pode não ter sido sincronizada ainda. Forçar a perda de foco garante isso antes de ler os dados do formulário.
     if (document.activeElement instanceof HTMLElement && form.contains(document.activeElement)) {
       document.activeElement.blur();
     }
@@ -263,8 +225,7 @@ export class RecipeEditorApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (this.recipeId) {
       const updated = await updateRecipe(this.recipeId, this.data);
       if (!updated) {
-        // A receita foi excluída (por esta ou outra janela) enquanto
-        // este editor estava aberto.
+        // A receita foi excluída (por esta ou outra janela) enquanto este editor estava aberto.
         ui.notifications.error(game.i18n.localize("RECIPE-BOOK.Errors.RecipeNoLongerExists"));
         this.close();
         return;

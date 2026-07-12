@@ -1,9 +1,6 @@
 import { MODULE_ID } from "./constants.js";
 
-/**
- * Caminho (path) do campo de quantidade dentro do item, configurável
- * nas configurações do módulo para funcionar com qualquer sistema.
- */
+/** Caminho (path) do campo de quantidade dentro do item, configurável nas configurações do módulo para funcionar com qualquer sistema. */
 function getQuantityPath() {
   return game.settings.get(MODULE_ID, "quantityPath");
 }
@@ -20,11 +17,7 @@ async function setQuantity(item, value) {
   return item.update({ [path]: value });
 }
 
-/**
- * Verifica se um item do ator corresponde a uma referência de receita
- * (ingrediente ou produto). Tenta casar por UUID de origem e, como
- * último recurso, pelo nome do item.
- */
+/** Verifica se um item do ator corresponde a uma referência de receita (ingrediente ou produto). Tenta casar por UUID de origem e, como último recurso, pelo nome do item. */
 function itemMatchesRef(item, ref) {
   if (item.uuid === ref.uuid) return true;
   const sourceId = item.getFlag?.("core", "sourceId") ?? item._stats?.compendiumSource;
@@ -37,10 +30,7 @@ function getMatchingItems(actor, ref) {
   return actor.items.filter(i => itemMatchesRef(i, ref));
 }
 
-/**
- * Verifica (sem consumir nada) se o ator possui todos os ingredientes
- * necessários para a receita.
- */
+/** Verifica (sem consumir nada) se o ator possui todos os ingredientes necessários para a receita. */
 export function actorHasIngredients(actor, recipe) {
   return recipe.ingredients.every(ing => {
     const total = getMatchingItems(actor, ing).reduce((sum, i) => sum + getQuantity(i), 0);
@@ -49,8 +39,7 @@ export function actorHasIngredients(actor, recipe) {
 }
 
 /**
- * Executa o craft: valida a janela de tempo, valida ingredientes,
- * consome-os e cria os itens de resultado no ator.
+ * Executa o craft: valida a janela de tempo, valida ingredientes, consome-os e cria os itens de resultado no ator.
  * @returns {Promise<boolean>} sucesso ou falha
  */
 export async function craftRecipe(actor, recipe) {
@@ -88,8 +77,7 @@ export async function craftRecipe(actor, recipe) {
   for (const res of recipe.results) {
     const existingMatches = getMatchingItems(actor, res);
     if (existingMatches.length) {
-      // Já existe um item correspondente no inventário: soma na pilha
-      // existente em vez de criar uma cópia nova.
+      // Já existe um item correspondente no inventário: soma na pilha existente em vez de criar uma cópia nova.
       const existing = existingMatches[0];
       await setQuantity(existing, getQuantity(existing) + res.quantity);
       continue;

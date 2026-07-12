@@ -1,10 +1,6 @@
 /**
- * Retorna os personagens que pertencem a jogadores (não NPCs
- * controlados só pelo Mestre), agrupados por jogador dono.
- *
- * @param {string[]|null} actorIds - Se informado, restringe o
- *   resultado a esses IDs de ator. Se null, considera todos os atores
- *   do mundo que pertencem a algum jogador.
+ * Retorna os personagens que pertencem a jogadores (não NPCs controlados só pelo Mestre), agrupados por jogador dono.
+ * @param {string[]|null} actorIds - Se informado, restringe o resultado a esses IDs de ator. Se null, considera todos os atores do mundo que pertencem a algum jogador.
  * @returns {{userId: string, userName: string, actors: {id:string, name:string, img:string}[]}[]}
  */
 export function getPlayerCharacterGroups(actorIds = null) {
