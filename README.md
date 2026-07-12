@@ -70,7 +70,7 @@ recipe-book/
 ├── module.json                     Manifesto do módulo
 ├── scripts/
 │   ├── constants.js                ID do módulo
-│   ├── main.js                     Hooks, settings, botão na barra de ferramentas, controle na lista de jogadores
+│   ├── main.js                     Hooks, settings, botão na aba de Itens, controle na lista de jogadores
 │   ├── recipe-data.js              CRUD das receitas (armazenadas em um world setting)
 │   ├── crafting-logic.js           Checagem/consumo de ingredientes e criação de itens
 │   ├── actor-groups.js             Agrupa personagens de jogadores pelo dono (usado no editor e no livro)
