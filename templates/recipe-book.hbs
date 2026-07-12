@@ -1,0 +1,144 @@
+<div class="recipe-book-layout">
+  <aside class="recipe-list">
+    {{#if isGM}}
+      <button type="button" data-action="new-recipe" class="new-recipe-btn">
+        <i class="fa-solid fa-plus"></i> {{localize "RECIPE-BOOK.App.NewRecipe"}}
+      </button>
+    {{else}}
+      {{#if hasMultipleActors}}
+        <details class="actor-switcher">
+          <summary><i class="fa-solid fa-user"></i> {{selectedActor.name}}</summary>
+          <ul>
+            {{#each myActorsForSwitcher as |a|}}
+              {{#unless a.selected}}
+                <li data-action="select-actor" data-actor-id="{{a.id}}">{{a.name}}</li>
+              {{/unless}}
+            {{/each}}
+          </ul>
+        </details>
+      {{else}}
+        <div class="actor-switcher static">
+          <i class="fa-solid fa-user"></i> {{selectedActor.name}}
+        </div>
+      {{/if}}
+    {{/if}}
+
+    <div class="list-controls">
+      <div class="window-status-icon {{#if windowOpen}}open{{else}}closed{{/if}} {{#if isGM}}clickable{{/if}}"
+           {{#if isGM}}data-action="toggle-crafting-window"{{/if}}
+           title="{{#if windowOpen}}{{localize 'RECIPE-BOOK.App.WindowOpen'}}{{else}}{{localize 'RECIPE-BOOK.App.WindowClosed'}}{{/if}}">
+        <i class="fa-solid {{#if windowOpen}}fa-lock-open{{else}}fa-lock{{/if}}"></i>
+      </div>
+      <button type="button" data-action="collapse-all" title="{{localize 'RECIPE-BOOK.App.CollapseAll'}}">
+        <i class="fa-solid fa-compress"></i>
+      </button>
+      <button type="button" data-action="expand-all" title="{{localize 'RECIPE-BOOK.App.ExpandAll'}}">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+
+    <div class="recipe-groups">
+      {{#each groups as |group|}}
+        <details class="tag-group" open>
+          <summary>{{#if group.tag}}{{group.tag}}{{else}}{{localize "RECIPE-BOOK.App.NoTagGroup"}}{{/if}}</summary>
+          <ul class="recipes">
+            {{#each group.recipes as |recipe|}}
+              <li class="{{#if recipe.active}}active{{/if}}" data-action="select-recipe" data-id="{{recipe.id}}">
+                <img src="{{recipe.img}}" alt="">
+                <span>{{recipe.name}}</span>
+              </li>
+            {{/each}}
+          </ul>
+        </details>
+      {{else}}
+        <p class="empty">{{localize "RECIPE-BOOK.App.NoRecipes"}}</p>
+      {{/each}}
+    </div>
+  </aside>
+
+  <section class="recipe-detail">
+    {{#if selected}}
+      <header>
+        <img src="{{selected.img}}" alt="">
+        <h2>{{selected.name}}</h2>
+        {{#if isGM}}
+          <div class="gm-actions">
+            <a data-action="edit-recipe" data-id="{{selected.id}}" title="{{localize 'RECIPE-BOOK.App.Edit'}}">
+              <i class="fa-solid fa-pen"></i>
+            </a>
+            <a data-action="delete-recipe" data-id="{{selected.id}}" title="{{localize 'RECIPE-BOOK.App.Delete'}}">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </div>
+        {{/if}}
+      </header>
+
+      {{#if selected.tags.length}}
+        <div class="tag-pills">
+          {{#each selected.tags as |tag|}}
+            <span class="tag-pill">{{tag}}</span>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if selected.description}}
+        <div class="description">{{{selected.description}}}</div>
+      {{/if}}
+
+      <div class="columns">
+        <div class="ingredients">
+          <h3>{{localize "RECIPE-BOOK.App.Ingredients"}}</h3>
+          <ul>
+            {{#each selected.ingredients as |ing|}}
+              <li><img src="{{ing.img}}" alt=""> {{ing.name}} <span class="qty">x{{ing.quantity}}</span></li>
+            {{else}}
+              <li class="muted">{{localize "RECIPE-BOOK.App.None"}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="results">
+          <h3>{{localize "RECIPE-BOOK.App.Results"}}</h3>
+          <ul>
+            {{#each selected.results as |res|}}
+              <li><img src="{{res.img}}" alt=""> {{res.name}} <span class="qty">x{{res.quantity}}</span></li>
+            {{else}}
+              <li class="muted">{{localize "RECIPE-BOOK.App.None"}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+
+      {{#if isGM}}
+        <div class="assigned-actors">
+          <h3>{{localize "RECIPE-BOOK.App.AssignedTo"}}</h3>
+          {{#if selected.assignedGroups.length}}
+            <ul class="assigned-groups">
+              {{#each selected.assignedGroups as |group|}}
+                <li>
+                  <strong>{{group.userName}}</strong>
+                  ({{#each group.actors as |a|}}<a data-action="open-actor-sheet" data-actor-id="{{a.id}}">{{a.name}}</a>{{#unless @last}}, {{/unless}}{{/each}})
+                </li>
+              {{/each}}
+            </ul>
+          {{else}}
+            <p class="muted">{{localize "RECIPE-BOOK.App.NoneAssigned"}}</p>
+          {{/if}}
+        </div>
+      {{else}}
+        <div class="craft-actions">
+          <button type="button" data-action="craft"
+                  data-recipe-id="{{selected.id}}"
+                  {{#unless selected.canCraft}}disabled{{/unless}}>
+            <i class="fa-solid fa-mortar-pestle"></i>
+            {{localize "RECIPE-BOOK.App.Craft"}}
+          </button>
+          {{#unless windowOpen}}
+            <p class="muted small">{{localize "RECIPE-BOOK.App.WindowClosedHint"}}</p>
+          {{/unless}}
+        </div>
+      {{/if}}
+    {{else}}
+      <p class="empty-state">{{localize "RECIPE-BOOK.App.SelectRecipeHint"}}</p>
+    {{/if}}
+  </section>
+</div>

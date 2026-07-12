@@ -1,0 +1,57 @@
+{
+  "RECIPE-BOOK.App.Title": "Livro de Receitas",
+  "RECIPE-BOOK.App.NewRecipe": "Nova Receita",
+  "RECIPE-BOOK.App.WindowOpen": "Janela de Criação Aberta",
+  "RECIPE-BOOK.App.WindowClosed": "Janela de Criação Fechada",
+  "RECIPE-BOOK.App.NoRecipes": "Nenhuma receita cadastrada.",
+  "RECIPE-BOOK.App.Ingredients": "Ingredientes",
+  "RECIPE-BOOK.App.Results": "Produtos",
+  "RECIPE-BOOK.App.None": "Nenhum",
+  "RECIPE-BOOK.App.AssignedTo": "Atribuída a",
+  "RECIPE-BOOK.App.NoneAssigned": "Nenhum personagem recebeu esta receita ainda.",
+  "RECIPE-BOOK.App.Craft": "Criar",
+  "RECIPE-BOOK.App.WindowClosedHint": "O Mestre ainda não liberou a criação de itens.",
+  "RECIPE-BOOK.App.SelectRecipeHint": "Selecione uma receita à esquerda.",
+  "RECIPE-BOOK.App.Edit": "Editar",
+  "RECIPE-BOOK.App.Delete": "Excluir",
+  "RECIPE-BOOK.App.NoTagGroup": "Sem tag",
+  "RECIPE-BOOK.App.CollapseAll": "Recolher tudo",
+  "RECIPE-BOOK.App.ExpandAll": "Expandir tudo",
+
+  "RECIPE-BOOK.Editor.Title": "Editor de Receita",
+  "RECIPE-BOOK.Editor.Name": "Nome",
+  "RECIPE-BOOK.Editor.ClickToChangeImage": "Clique para trocar a imagem",
+  "RECIPE-BOOK.Editor.Tags": "Tags:",
+  "RECIPE-BOOK.Editor.TagsPlaceholder": "separadas por vírgula, ex.: poções, alquimia",
+  "RECIPE-BOOK.Editor.Ingredients": "Ingredientes",
+  "RECIPE-BOOK.Editor.Results": "Produtos",
+  "RECIPE-BOOK.Editor.DropHint": "Arraste itens do compêndio, do mundo ou de uma ficha até aqui.",
+  "RECIPE-BOOK.Editor.AssignTo": "Atribuir a personagens",
+  "RECIPE-BOOK.Editor.NoActors": "Nenhum personagem encontrado.",
+  "RECIPE-BOOK.Editor.Save": "Salvar",
+  "RECIPE-BOOK.Editor.DefaultName": "Nova Receita",
+
+  "RECIPE-BOOK.Hud.Title": "Painel de Criação",
+  "RECIPE-BOOK.Hud.StatusOpen": "Aberta",
+  "RECIPE-BOOK.Hud.StatusClosed": "Fechada",
+
+  "RECIPE-BOOK.Controls.OpenBook": "Livro de Receitas",
+  "RECIPE-BOOK.Controls.GroupTitle": "Livro de Receitas",
+
+  "RECIPE-BOOK.Dialogs.DeleteTitle": "Excluir Receita",
+  "RECIPE-BOOK.Dialogs.DeleteContent": "Tem certeza que deseja excluir esta receita? Esta ação não pode ser desfeita.",
+
+  "RECIPE-BOOK.Errors.WindowClosed": "O Mestre ainda não liberou a janela de criação de itens.",
+  "RECIPE-BOOK.Errors.MissingIngredient": "{actor} não possui ingredientes suficientes: {item}.",
+  "RECIPE-BOOK.Errors.MissingSourceItem": "Não foi possível encontrar o item de origem \"{item}\". Ele pode ter sido movido ou excluído.",
+  "RECIPE-BOOK.Errors.RecipeNoLongerExists": "Esta receita não existe mais (pode ter sido excluída em outra janela).",
+  "RECIPE-BOOK.Errors.NoCharacterTitle": "Nenhum personagem",
+  "RECIPE-BOOK.Errors.NoCharacterMessage": "Infelizmente, para usar o Livro de Receitas você precisa de um personagem. Peça ao seu Mestre para criar um personagem e atribuí-lo a você.",
+  "RECIPE-BOOK.Errors.NoCharacterOk": "Entendi",
+
+  "RECIPE-BOOK.Chat.Crafted": "{actor} fabricou a receita: <strong>{recipe}</strong>.",
+  "RECIPE-BOOK.Notifications.CraftSuccess": "Receita \"{recipe}\" criada com sucesso!",
+
+  "RECIPE-BOOK.Settings.QuantityPath.Name": "Campo de Quantidade do Item",
+  "RECIPE-BOOK.Settings.QuantityPath.Hint": "Caminho do dado (data path) usado pelo seu sistema para guardar a quantidade de um item, ex.: system.quantity. Ajuste caso seu sistema use um campo diferente."
+}

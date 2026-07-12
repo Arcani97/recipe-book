@@ -1,0 +1,536 @@
+.recipe-book .window-content {
+  padding: 0;
+}
+
+/* ---------- Livro de Receitas ---------- */
+.recipe-book-layout {
+  display: flex;
+  height: 100%;
+  font-size: 14px;
+}
+
+.recipe-book-layout .recipe-list {
+  width: 240px;
+  min-width: 240px;
+  border-right: 2px solid var(--color-border-light-tertiary, #999);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.recipe-book-layout .new-recipe-btn {
+  margin-bottom: 8px;
+}
+
+.recipe-book-layout .actor-switcher {
+  margin-bottom: 8px;
+}
+
+.recipe-book-layout .actor-switcher summary,
+.recipe-book-layout .actor-switcher.static {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border: 2px solid var(--color-border-light-tertiary, #999);
+  border-radius: 4px;
+  list-style: none;
+}
+
+.recipe-book-layout .actor-switcher summary {
+  cursor: pointer;
+}
+
+.recipe-book-layout .actor-switcher summary::after {
+  content: "\f078"; /* fa-chevron-down */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.recipe-book-layout .actor-switcher ul {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  border: 2px solid var(--color-border-light-tertiary, #999);
+  border-radius: 4px;
+}
+
+.recipe-book-layout .actor-switcher ul li {
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.recipe-book-layout .actor-switcher ul li:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.recipe-book-layout .list-controls {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.recipe-book-layout .window-status-icon {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 1.1em;
+}
+
+.recipe-book-layout .window-status-icon.open {
+  background: rgba(60, 160, 80, 0.25);
+  color: #3f9142;
+}
+
+.recipe-book-layout .window-status-icon.closed {
+  background: rgba(160, 60, 60, 0.25);
+  color: #c0392b;
+}
+
+.recipe-book-layout .window-status-icon.clickable {
+  cursor: pointer;
+}
+
+.recipe-book-layout .window-status-icon.clickable:hover {
+  filter: brightness(1.15);
+  outline: 2px solid currentColor;
+}
+
+.recipe-book-layout .list-controls button {
+  flex: 1;
+}
+
+.recipe-book-layout .recipe-groups {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.recipe-book-layout .tag-group {
+  margin-bottom: 6px;
+}
+
+.recipe-book-layout .tag-group summary {
+  cursor: pointer;
+  padding: 4px 2px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--color-border-light-tertiary, #999);
+  list-style: revert;
+}
+
+.recipe-book-layout .tag-group summary:hover {
+  opacity: 0.8;
+}
+
+.recipe-book-layout ul.recipes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-book-layout ul.recipes li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.recipe-book-layout ul.recipes li span {
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* color-mix() cria um destaque translúcido baseado na cor do texto
+   atual — ou seja, se adapta sozinho ao tema claro ou escuro, sem
+   precisarmos definir uma versão para cada um. */
+.recipe-book-layout ul.recipes li:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.recipe-book-layout ul.recipes li.active {
+  background: color-mix(in srgb, currentColor 15%, transparent);
+  font-weight: bold;
+}
+
+.recipe-book-layout ul.recipes li img {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  object-fit: cover;
+  border: none;
+  border-radius: 3px;
+}
+
+.recipe-book-layout .recipe-detail {
+  flex: 1;
+  padding: 12px 16px;
+  overflow-y: auto;
+}
+
+.recipe-book-layout .recipe-detail header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.recipe-book-layout .recipe-detail header img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.recipe-book-layout .recipe-detail header h2 {
+  flex: 1;
+  margin: 0;
+  border: none;
+}
+
+.recipe-book-layout .gm-actions a {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.recipe-book-layout .tag-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.recipe-book-layout .tag-pill {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.recipe-book-layout .description {
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.recipe-book-layout .description p {
+  margin: 0 0 6px;
+}
+
+.recipe-book-layout .description p:last-child {
+  margin-bottom: 0;
+}
+
+.recipe-book-layout .columns {
+  display: flex;
+  gap: 24px;
+  margin: 12px 0;
+}
+
+.recipe-book-layout .columns > div {
+  flex: 1;
+}
+
+.recipe-book-layout .columns ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-book-layout .columns li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+
+.recipe-book-layout .columns li img {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.recipe-book-layout .qty {
+  opacity: 0.7;
+  margin-left: auto;
+}
+
+.recipe-book-layout .craft-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.recipe-book-layout .assigned-groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-book-layout .assigned-groups li {
+  padding: 3px 0;
+}
+
+.recipe-book-layout .assigned-groups a {
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+
+.recipe-book-layout .assigned-groups a:hover {
+  color: var(--color-text-hyperlink, #ff6400);
+}
+
+.recipe-book-layout .muted {
+  opacity: 0.6;
+}
+
+.recipe-book-layout .small {
+  font-size: 12px;
+}
+
+.recipe-book-layout .empty-state {
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ---------- Editor de receita ---------- */
+.recipe-editor-app .form-group {
+  margin-bottom: 10px;
+}
+
+.recipe-editor-app .recipe-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.recipe-editor-app .recipe-header .recipe-img-picker {
+  display: block;
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px;
+  min-height: 64px;
+  max-width: 64px;
+  max-height: 64px;
+  flex: 0 0 64px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 2px solid var(--color-border-light-tertiary, #999);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.recipe-editor-app .recipe-header input[name="name"] {
+  flex: 1 1 auto;
+  width: auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 64px;
+}
+
+.recipe-editor-app .recipe-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recipe-editor-app .recipe-tags label {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.recipe-editor-app .recipe-tags input {
+  flex: 1;
+}
+
+/* A descrição precisa ocupar 100% da largura da janela. */
+.recipe-editor-app .recipe-description {
+  width: 100%;
+}
+
+.recipe-editor-app .recipe-description prose-mirror {
+  width: 100%;
+  min-height: 200px;
+  border: 2px solid var(--color-border-light-tertiary, #999);
+  border-radius: 4px;
+}
+
+/* Reforço: garante tamanho e cor de texto visíveis na área de edição
+   interna, caso o elemento não herde isso corretamente sozinho. */
+.recipe-editor-app .recipe-description .editor-content,
+.recipe-editor-app .recipe-description .ProseMirror {
+  min-height: 160px;
+  color: var(--color-text-primary, inherit);
+}
+
+.recipe-editor-app .columns {
+  display: flex;
+  gap: 16px;
+}
+
+.recipe-editor-app .drop-zone {
+  flex: 1;
+  border: 4px dashed var(--color-border-light-tertiary, #999);
+  border-radius: 6px;
+  padding: 8px;
+  min-height: 120px;
+}
+
+.recipe-editor-app .drop-zone .hint {
+  font-size: 11px;
+  opacity: 0.6;
+  margin: 2px 0 6px;
+}
+
+.recipe-editor-app .drop-zone ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-editor-app .drop-zone li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+
+.recipe-editor-app .drop-zone li img {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.recipe-editor-app .drop-zone li span {
+  flex: 1;
+}
+
+.recipe-editor-app .entry-quantity {
+  width: 44px;
+}
+
+.recipe-editor-app .remove-entry {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.recipe-editor-app .remove-entry:hover {
+  opacity: 1;
+  color: #c0392b;
+}
+
+.recipe-editor-app .assign-actors {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.recipe-editor-app .assign-actors ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px 20px;
+}
+
+.recipe-editor-app .assign-actors .player-group {
+  border: 2px solid var(--color-border-light-tertiary, #999);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+
+.recipe-editor-app .assign-actors .player-group summary {
+  cursor: pointer;
+  padding: 6px 8px;
+  font-weight: bold;
+  list-style: revert;
+}
+
+.recipe-editor-app .assign-actors .player-group summary:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.recipe-editor-app .assign-actors li label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.recipe-editor-app .assign-actors li img {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border: none;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.recipe-editor-app footer {
+  margin-top: 12px;
+}
+
+.recipe-editor-app footer button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ---------- Controle na lista de jogadores (estilo Breaktime, só GM) ----------
+   Este elemento não faz parte de uma janela do módulo — é injetado
+   dentro do painel de jogadores nativo do Foundry (sempre com tema
+   escuro, independente do tema geral escolhido), então mantém cores
+   fixas mesmo, sem precisar de color-mix(). */
+.recipe-book-player-control {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.recipe-book-player-control:hover i {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.recipe-book-player-control.open i {
+  color: #6bcb6b;
+}
+
+.recipe-book-player-control.closed i {
+  color: #e06666;
+}
+
+/* ---------- Botão na aba de Itens (estilo Party Resources) ---------- */
+.recipe-book-directory-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+}

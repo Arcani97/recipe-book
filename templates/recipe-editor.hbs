@@ -1,0 +1,72 @@
+<form autocomplete="off">
+<div class="recipe-header">
+  <img class="recipe-img-picker" src="{{recipe.img}}" title="{{localize 'RECIPE-BOOK.Editor.ClickToChangeImage'}}">
+  <input type="text" name="name" value="{{recipe.name}}" placeholder="{{localize 'RECIPE-BOOK.Editor.Name'}}">
+</div>
+
+<div class="form-group recipe-tags">
+  <label>{{localize "RECIPE-BOOK.Editor.Tags"}}</label>
+  <input type="text" name="tags" value="{{recipe.tagsInput}}" placeholder="{{localize 'RECIPE-BOOK.Editor.TagsPlaceholder'}}">
+</div>
+
+<div class="form-group recipe-description">
+  <prose-mirror name="description" button="true" editable="true" toggled="false" value="{{recipe.description}}">{{{recipe.descriptionEnriched}}}</prose-mirror>
+</div>
+
+<div class="columns">
+  <div class="drop-zone" data-drop="ingredients">
+    <h3>{{localize "RECIPE-BOOK.Editor.Ingredients"}}</h3>
+    <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    <ul>
+      {{#each recipe.ingredients as |ing i|}}
+        <li>
+          <img src="{{ing.img}}" alt="">
+          <span>{{ing.name}}</span>
+          <input type="number" min="1" class="entry-quantity" data-list="ingredients" data-index="{{i}}" value="{{ing.quantity}}">
+          <a class="remove-entry" data-list="ingredients" data-index="{{i}}"><i class="fa-solid fa-xmark"></i></a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="drop-zone" data-drop="results">
+    <h3>{{localize "RECIPE-BOOK.Editor.Results"}}</h3>
+    <p class="hint">{{localize "RECIPE-BOOK.Editor.DropHint"}}</p>
+    <ul>
+      {{#each recipe.results as |res i|}}
+        <li>
+          <img src="{{res.img}}" alt="">
+          <span>{{res.name}}</span>
+          <input type="number" min="1" class="entry-quantity" data-list="results" data-index="{{i}}" value="{{res.quantity}}">
+          <a class="remove-entry" data-list="results" data-index="{{i}}"><i class="fa-solid fa-xmark"></i></a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="assign-actors">
+  <h3>{{localize "RECIPE-BOOK.Editor.AssignTo"}}</h3>
+  {{#each playerGroups as |group|}}
+    <details class="player-group">
+      <summary>{{group.userName}}</summary>
+      <ul>
+        {{#each group.actors as |actor|}}
+          <li>
+            <label>
+              <input type="checkbox" name="actor-{{actor.id}}" {{#if actor.assigned}}checked{{/if}}>
+              <img src="{{actor.img}}" alt=""> {{actor.name}}
+            </label>
+          </li>
+        {{/each}}
+      </ul>
+    </details>
+  {{else}}
+    <p class="muted">{{localize "RECIPE-BOOK.Editor.NoActors"}}</p>
+  {{/each}}
+</div>
+
+<footer>
+  <button type="submit"><i class="fa-solid fa-floppy-disk"></i> {{localize "RECIPE-BOOK.Editor.Save"}}</button>
+</footer>
+</form>
