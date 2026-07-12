@@ -43,14 +43,6 @@
   cursor: pointer;
 }
 
-.recipe-book-layout .actor-switcher summary::after {
-  content: "\f078"; /* fa-chevron-down */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  margin-left: auto;
-  opacity: 0.7;
-}
-
 .recipe-book-layout .actor-switcher ul {
   list-style: none;
   margin: 2px 0 0;
@@ -153,9 +145,7 @@
   word-break: break-word;
 }
 
-/* color-mix() cria um destaque translúcido baseado na cor do texto
-   atual — ou seja, se adapta sozinho ao tema claro ou escuro, sem
-   precisarmos definir uma versão para cada um. */
+/* color-mix() cria um destaque translúcido baseado na cor do texto atual — ou seja, se adapta sozinho ao tema claro ou escuro, sem precisarmos definir uma versão para cada um. */
 .recipe-book-layout ul.recipes li:hover {
   background: color-mix(in srgb, currentColor 8%, transparent);
 }
@@ -374,8 +364,7 @@
   border-radius: 4px;
 }
 
-/* Garante tamanho mínimo e cor de texto legível na área de edição
-   interna do editor de texto rico. */
+/* Garante tamanho mínimo e cor de texto legível na área de edição interna do editor de texto rico. */
 .recipe-editor-app .recipe-description .editor-content,
 .recipe-editor-app .recipe-description .ProseMirror {
   min-height: 160px;
@@ -389,7 +378,7 @@
 
 .recipe-editor-app .drop-zone {
   flex: 1;
-  border: 4px dashed var(--color-border-light-tertiary, #999);
+  border: 2px dashed var(--color-border-light-tertiary, #999);
   border-radius: 6px;
   padding: 8px;
   min-height: 120px;
@@ -441,6 +430,7 @@
 }
 
 .recipe-editor-app .assign-actors {
+  margin-top: 20px;
   max-height: 220px;
   overflow-y: auto;
 }
@@ -497,11 +487,8 @@
   gap: 6px;
 }
 
-/* ---------- Controle na lista de jogadores (estilo Breaktime, só GM) ----------
-   Este elemento não faz parte de uma janela do módulo — é injetado
-   dentro do painel de jogadores nativo do Foundry (sempre com tema
-   escuro, independente do tema geral escolhido), então mantém cores
-   fixas mesmo, sem precisar de color-mix(). */
+/* ---------- Controle na lista de jogadores (estilo Breaktime, só GM) ---------- */
+/* Este elemento não faz parte de uma janela do módulo — é injetado dentro do painel de jogadores nativo do Foundry (sempre com tema escuro, independente do tema geral escolhido), então mantém cores fixas mesmo, sem precisar de color-mix(). */
 .recipe-book-player-control {
   border-top: 1px solid;
   border-bottom: 1px solid;

@@ -25,7 +25,7 @@
   "RECIPE-BOOK.Editor.TagsPlaceholder": "comma separated, e.g.: potions, alchemy",
   "RECIPE-BOOK.Editor.Ingredients": "Ingredients",
   "RECIPE-BOOK.Editor.Results": "Results",
-  "RECIPE-BOOK.Editor.DropHint": "Drag items here from a compendium, the world, or a character sheet.",
+  "RECIPE-BOOK.Editor.DropHint": "Drag items here from a compendium or the world.",
   "RECIPE-BOOK.Editor.AssignTo": "Assign to characters",
   "RECIPE-BOOK.Editor.NoActors": "No characters found.",
   "RECIPE-BOOK.Editor.Save": "Save",
