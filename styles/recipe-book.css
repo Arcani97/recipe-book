@@ -374,8 +374,8 @@
   border-radius: 4px;
 }
 
-/* Reforço: garante tamanho e cor de texto visíveis na área de edição
-   interna, caso o elemento não herde isso corretamente sozinho. */
+/* Garante tamanho mínimo e cor de texto legível na área de edição
+   interna do editor de texto rico. */
 .recipe-editor-app .recipe-description .editor-content,
 .recipe-editor-app .recipe-description .ProseMirror {
   min-height: 160px;

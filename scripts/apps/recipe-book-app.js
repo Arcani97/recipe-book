@@ -6,6 +6,11 @@ import { RecipeEditorApp } from "./recipe-editor-app.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+/**
+ * Livro de receitas: para o Mestre, lista e gerencia todas as
+ * receitas do mundo; para jogadores, mostra as receitas atribuídas ao
+ * personagem selecionado e permite fabricá-las.
+ */
 export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
   /**
    * Instâncias abertas no momento, usada por main.js para saber quais

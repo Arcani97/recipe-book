@@ -16,8 +16,9 @@ ingredientes automaticamente.
 ## Como usar
 
 ### Mestre
-1. Um botão **Livro de Receitas** aparece na barra de ferramentas
-   lateral (ícone de livro). Clique para abrir o livro.
+1. Um botão **Livro de Receitas** aparece no topo da aba **Itens** da
+   barra lateral, acima de "Create Item"/"Create Folder". Clique para
+   abrir o livro.
 2. Clique em **Nova Receita**: dê um nome, tags (separadas por
    vírgula, opcional) e descrição (com formatação — negrito, itálico,
    listas etc.).
@@ -38,10 +39,17 @@ ingredientes automaticamente.
      alterá-lo.
 
 ### Jogador
-1. Abra o **Livro de Receitas** pela barra de ferramentas.
-2. Verá apenas as receitas atribuídas aos personagens que possui.
-3. Se a Janela de Criação estiver aberta e o personagem tiver os
-   ingredientes necessários, o botão **Criar como [Personagem]** fica
+1. Abra o **Livro de Receitas** pela aba de Itens. Se o jogador não
+   tiver nenhum personagem próprio, o livro não abre — aparece um
+   aviso pedindo para o Mestre atribuir um personagem a ele.
+2. No topo da lista, um botão mostra o personagem atualmente
+   selecionado. Se o jogador tiver mais de um personagem, clicar nele
+   abre uma lista para trocar; com apenas um personagem, o botão é só
+   um rótulo. O livro mostra as receitas atribuídas ao personagem
+   selecionado, e a escolha é lembrada da próxima vez que o livro for
+   aberto.
+3. Se a Janela de Criação estiver aberta e o personagem selecionado
+   tiver os ingredientes necessários, o botão **Criar** fica
    disponível. Ao clicar, os ingredientes são consumidos e o(s)
    produto(s) aparece(m) no inventário do personagem, com uma
    mensagem no chat registrando o craft.
@@ -53,8 +61,8 @@ ingredientes automaticamente.
 O módulo é agnóstico de sistema. A única configuração
 específica-de-sistema é o **campo de quantidade do item**
 (`Configurar Módulos > Recipe Book`), que por padrão é
-`system.quantity` (usado pela maioria dos sistemas, incluindo _**D&D5e**_).
-Se o seu sistema guardar quantidade em outro campo, ajuste esse valor. (O Sistema _**Symbaroum**_ por exemplo usa o campo `system.number`)
+`system.quantity` (usado pela maioria dos sistemas, incluindo D&D5e).
+Se o seu sistema guardar quantidade em outro campo, ajuste esse valor.
 Sistemas onde itens não têm quantidade funcionam normalmente — o
 módulo trata a ausência do campo como quantidade 1 por item.
 
@@ -86,7 +94,7 @@ recipe-book/
 ├── module.json                     Manifesto do módulo
 ├── scripts/
 │   ├── constants.js                ID do módulo
-│   ├── main.js                     Hooks, settings, botão na barra de ferramentas, controle na lista de jogadores
+│   ├── main.js                     Hooks, settings, botão na aba de Itens, controle na lista de jogadores
 │   ├── recipe-data.js              CRUD das receitas (armazenadas em um world setting)
 │   ├── crafting-logic.js           Checagem/consumo de ingredientes e criação de itens
 │   ├── actor-groups.js             Agrupa personagens de jogadores pelo dono (usado no editor e no livro)
