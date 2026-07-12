@@ -1,14 +1,17 @@
 {
   "id": "recipe-book",
   "title": "Recipe Book",
-  "description": "Adiciona um livro de receitas: o Mestre cria receitas (ingredientes -> produtos), atribui a personagens específicos e libera uma janela de tempo em que os jogadores podem fabricar os itens, consumindo os ingredientes automaticamente.",
+  "description": "Adiciona um livro de receitas: o Mestre cria receitas (ingredientes -> produtos), atribui a personagens específicos e libera uma janela de tempo em que os jogadores podem fabricar os itens, consumindo os ingredientes e adicionando o produto automaticamente.",
   "version": "1.00",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
   },
   "authors": [
-    { "name": "Seu Nome" }
+    {
+      "name": "Arcani97",
+      "discord": "arcani97"
+    }
   ],
   "esmodules": [
     "scripts/main.js"

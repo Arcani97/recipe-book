@@ -53,8 +53,8 @@ ingredientes automaticamente.
 O módulo é agnóstico de sistema. A única configuração
 específica-de-sistema é o **campo de quantidade do item**
 (`Configurar Módulos > Recipe Book`), que por padrão é
-`system.quantity` (usado pela maioria dos sistemas, incluindo D&D5e).
-Se o seu sistema guardar quantidade em outro campo, ajuste esse valor.
+`system.quantity` (usado pela maioria dos sistemas, incluindo _**D&D5e**_).
+Se o seu sistema guardar quantidade em outro campo, ajuste esse valor. (O Sistema _**Symbaroum**_ por exemplo usa o campo `system.number`)
 Sistemas onde itens não têm quantidade funcionam normalmente — o
 módulo trata a ausência do campo como quantidade 1 por item.
 
