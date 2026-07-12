@@ -90,6 +90,8 @@ recipe-book/
 
 - As receitas ficam salvas em um *world setting* (`recipe-book.recipes`), então são as mesmas para todos os usuários e persistem com o mundo.
 - A correspondência entre um ingrediente da receita e os itens que o personagem possui é feita, em ordem de prioridade: (1) mesmo UUID exato, (2) mesmo UUID de origem (item veio de um compêndio/item via `flags.core.sourceId`), (3) mesmo nome do item, como último recurso. Por isso, para maior confiabilidade, prefira criar receitas arrastando itens de um compêndio ou do diretório de itens do mundo (não de fichas individuais), garantindo que os personagens tenham itens realmente originados dali.
-- Uma API simples é exposta em `game.modules.get("recipe-book").api` (`RecipeBookApp`, `RecipeEditorApp`), caso queira abrir o livro por uma macro, por exemplo:
+- Uma API simples é exposta em `game.modules.get("recipe-book").api` (`RecipeBookApp`, `RecipeEditorApp`), caso queira abrir o livro por uma macro, use:
 
-```js new (game.modules.get("recipe-book").api.RecipeBookApp)().render(true);```
+```js
+new (game.modules.get("recipe-book").api.RecipeBookApp)().render(true);
+```
