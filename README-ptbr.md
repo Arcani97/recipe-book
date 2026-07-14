@@ -4,23 +4,8 @@
 [![en](https://img.shields.io/badge/README-EN-00247d?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-en.md)
 [![ptbr](https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=7c7e7e)](https://github.com/Arcani97/recipe-book/blob/main/README-ptbr.md)
 
-# Recipe Book (Livro de Receitas)
+# Livro de Receitas
 
-Módulo para Foundry VTT que adiciona um livro de receitas para facilitar a criação de itens automaticamente.
-
-Este projeto é desenvolvido de forma independente e durante o tempo livre. Sugestões, correções e relatos de erros são sempre bem-vindos.
-
-<br/>
-
-## Instalação
-
-**Manifest URL**
-
-```text
-https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
-```
-
-<br/>
 
 ## Como usar
 

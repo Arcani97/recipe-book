@@ -6,21 +6,6 @@
 
 # Recipe Book
 
-A module for Foundry VTT that adds a recipe book to make automatic item crafting easier.
-
-This project is developed independently, in the developer's free time. Suggestions, bug reports, and fixes are always welcome.
-
-<br/>
-
-## Installation
-
-**Manifest URL**
-
-```text
-https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
-```
-
-<br/>
 
 ## How to use
 
