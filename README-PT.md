@@ -1,6 +1,7 @@
 ### Idiomas Disponiveis
 
-<img alt="README-EN" src="https://img.shields.io/badge/README-EN-00247d?style=flat&link=https://github.com/Arcani97/recipe-book/blob/main/README.md">  <img alt="README-EN" src="https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=ffffff&link=https://github.com/Arcani97/recipe-book/blob/main/README-PTBR.md">
+[![en](https://img.shields.io/badge/README-EN-00247d?style=flat)](https://github.com/Arcani97/recipe-book/blob/main/README.md)
+[![ptbr](https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=ffffff)](https://github.com/Arcani97/recipe-book/blob/main/README-PTBR.md)
 
 <br/>
 
