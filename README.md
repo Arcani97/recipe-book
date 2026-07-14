@@ -23,7 +23,13 @@ Este projeto é desenvolvido de forma independente e durante o tempo livre. Suge
 <br/>
 
 #### Support my work | Apoie meu trabalho
-[![ptbr](https://img.shields.io/badge/Patreon-Arcani97-40217e?style=flat&logo=patreon&labelColor=242526)](https://www.patreon.com/cw/Arcani97)
+[![pantreon](https://img.shields.io/badge/Patreon-Arcani97-40217e?style=flat&logo=patreon&labelColor=242526)](https://www.patreon.com/cw/Arcani97)
+
+<br/>
+
+[![foundry](https://img.shields.io/badge/Foundry-242526?style=flat&logo=foundryvirtualtabletop&labelColor=242526)](https://foundryvtt.com/community/arcani97/)
+[![steam](https://img.shields.io/badge/Steam-242526?style=flat&logo=steam&labelColor=242526)](https://steamcommunity.com/id/Arcani97/)
+[![github](https://img.shields.io/badge/GitHub-242526?style=flat&logo=github&labelColor=242526)](https://github.com/Arcani97)
 
 <br/>
 
