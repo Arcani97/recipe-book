@@ -31,7 +31,6 @@ Este projeto é desenvolvido de forma independente e durante o tempo livre. Suge
 [![steam](https://img.shields.io/badge/Steam-242526?style=flat&logo=steam&labelColor=242526)](https://steamcommunity.com/id/Arcani97/)
 [![github](https://img.shields.io/badge/GitHub-242526?style=flat&logo=github&labelColor=242526)](https://github.com/Arcani97)
 
-<br/>
 
 ## Installation | Instalação
 
