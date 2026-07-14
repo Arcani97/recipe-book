@@ -4,7 +4,7 @@
 [![ptbr](https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-ptbr.md)
 
 #### Support my work | Apoie meu trabalho
-[![ptbr](https://img.shields.io/badge/Patreon-Arcani97-40217e?style=flat&logo=patreon&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-ptbr.md)
+[![ptbr](https://img.shields.io/badge/Patreon-Arcani97-40217e?style=flat&logo=patreon&labelColor=242526)](https://www.patreon.com/cw/Arcani97)
 
 
 # Images | Imagens
