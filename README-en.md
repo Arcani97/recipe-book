@@ -1,5 +1,3 @@
-### Available Languages
-
 
 [![home](https://img.shields.io/badge/Home-242526?logo=googlehome
 )](https://github.com/Arcani97/recipe-book)
