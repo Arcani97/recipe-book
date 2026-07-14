@@ -1,8 +1,8 @@
 
 [![home](https://img.shields.io/badge/Home-7c7e7e?logo=googlehome
 )](https://github.com/Arcani97/recipe-book)
-[![en](https://img.shields.io/badge/README-EN-00247d?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README.md)
-[![ptbr](https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-PTBR.md)
+[![en](https://img.shields.io/badge/README-EN-00247d?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-en.md)
+[![ptbr](https://img.shields.io/badge/README-PT--BR-004f1e?style=flat&labelColor=242526)](https://github.com/Arcani97/recipe-book/blob/main/README-ptbr.md)
 
 # Images | Imagens
 
