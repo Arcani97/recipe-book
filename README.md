@@ -20,6 +20,15 @@ Este projeto é desenvolvido de forma independente e durante o tempo livre. Suge
 
 <br/>
 
+## Installation | Instalação
+
+**Manifest URL**
+
+```text
+https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
+```
+
+
 <br/>
 
 #### Support my work | Apoie meu trabalho
