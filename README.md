@@ -44,8 +44,5 @@ https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.js
 
 ## Images | Imagens
 
-![Menu](https://i.imgur.com/qQ6qM9S.png)
 
-![Recipe List](https://i.imgur.com/0E85Bca.png)
-
-![Recipe Editor](https://i.imgur.com/r8Wrne7.png)
+![Recipe Book Images](https://i.imgur.com/XpVo7MR.png)
