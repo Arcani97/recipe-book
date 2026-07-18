@@ -41,17 +41,8 @@ https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.js
 [![github](https://img.shields.io/badge/GitHub-242526?style=flat&logo=github&labelColor=242526)](https://github.com/Arcani97)
 
 
-## Installation | Instalação
-
-**Manifest URL**
-
-```text
-https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
-```
-
 <br/>
 
 ## Images | Imagens
 
-
-![Recipe Book Images](https://i.imgur.com/XpVo7MR.png)
+<img src="https://i.imgur.com/6jXkXGq.png" alt="Recipe Book Images" width="100%" align="center" />
