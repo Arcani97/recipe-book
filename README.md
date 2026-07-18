@@ -20,6 +20,15 @@ Este projeto é desenvolvido de forma independente e durante o tempo livre. Suge
 
 <br/>
 
+## Installation | Instalação
+
+**Manifest URL**
+
+```text
+https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
+```
+
+
 <br/>
 
 #### Support my work | Apoie meu trabalho
@@ -32,20 +41,3 @@ Este projeto é desenvolvido de forma independente e durante o tempo livre. Suge
 [![github](https://img.shields.io/badge/GitHub-242526?style=flat&logo=github&labelColor=242526)](https://github.com/Arcani97)
 
 
-## Installation | Instalação
-
-**Manifest URL**
-
-```text
-https://raw.githubusercontent.com/Arcani97/recipe-book/refs/heads/main/module.json
-```
-
-<br/>
-
-## Images | Imagens
-
-![Menu](https://i.imgur.com/qQ6qM9S.png)
-
-![Recipe List](https://i.imgur.com/0E85Bca.png)
-
-![Recipe Editor](https://i.imgur.com/r8Wrne7.png)
