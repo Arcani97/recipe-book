@@ -3,12 +3,11 @@ import { getRecipes, deleteRecipe } from "../recipe-data.js";
 import { craftRecipe, actorHasIngredients } from "../crafting-logic.js";
 import { getPlayerCharacterGroups } from "../actor-groups.js";
 import { RecipeEditorApp } from "./recipe-editor-app.js";
+import { RecipeAssignmentsApp } from "./recipe-assignments-app.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-/** Livro de receitas: para o Mestre, lista e gerencia todas as receitas do mundo; para jogadores, mostra as receitas atribuídas ao personagem selecionado e permite fabricá-las. */
 export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
-  /** Instâncias abertas no momento, usada por main.js para saber quais janelas re-renderizar quando um setting relevante muda (não damos como certo onde/como o Foundry rastreia instâncias de ApplicationV2 internamente, então mantemos nosso próprio registro simples). */
   static openInstances = new Set();
 
   static DEFAULT_OPTIONS = {
@@ -31,7 +30,8 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
       "open-actor-sheet": function (event, target) { return RecipeBookApp._onOpenActorSheet.call(this, event, target); },
       "collapse-all": function (event, target) { return RecipeBookApp._onCollapseAll.call(this, event, target); },
       "expand-all": function (event, target) { return RecipeBookApp._onExpandAll.call(this, event, target); },
-      "toggle-crafting-window": function (event, target) { return RecipeBookApp._onToggleCraftingWindow.call(this, event, target); }
+      "toggle-crafting-window": function (event, target) { return RecipeBookApp._onToggleCraftingWindow.call(this, event, target); },
+      "open-assignments": function (event, target) { return RecipeBookApp._onOpenAssignments.call(this, event, target); }
     }
   };
 
@@ -58,7 +58,6 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
         assignedGroups: getPlayerCharacterGroups(r.assignedActorIds)
       }));
     } else {
-      // Personagem "ativo" no livro: lembra a última escolha do jogador (via flag do usuário, persiste entre sessões) e cai para o primeiro personagem próprio caso não haja escolha salva ou ela não seja mais válida.
       if (!this.selectedActorId || !myActors.some(a => a.id === this.selectedActorId)) {
         const lastActorId = game.user.getFlag(MODULE_ID, "lastSelectedActorId");
         this.selectedActorId = myActors.some(a => a.id === lastActorId) ? lastActorId : myActors[0]?.id ?? null;
@@ -97,7 +96,6 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
     };
   }
 
-  /** Agrupa receitas pelas tags. Uma receita com múltiplas tags aparece em cada grupo correspondente. Receitas sem tag ficam num grupo separado ao final. */
   _groupByTag(recipes) {
     const byTag = new Map();
     const untagged = [];
@@ -155,7 +153,6 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!confirmed) return;
     await deleteRecipe(id);
 
-    // Fecha (com aviso) qualquer Editor de Receita que estivesse aberto editando essa mesma receita, para não deixá-lo "órfão".
     for (const editor of RecipeEditorApp.openInstances) {
       if (editor.recipeId === id) {
         ui.notifications.warn(game.i18n.localize("RECIPE-BOOK.Errors.RecipeNoLongerExists"));
@@ -198,5 +195,9 @@ export class RecipeBookApp extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!game.user.isGM) return;
     const current = game.settings.get(MODULE_ID, "craftingWindowOpen");
     await game.settings.set(MODULE_ID, "craftingWindowOpen", !current);
+  }
+
+  static _onOpenAssignments() {
+    new RecipeAssignmentsApp({ parentApp: this }).render(true);
   }
 }

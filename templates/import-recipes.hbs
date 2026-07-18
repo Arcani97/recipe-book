@@ -1,0 +1,42 @@
+<div class="import-recipes-content">
+  <p>{{localize "RECIPE-BOOK.Import.Description"}}</p>
+
+  <div class="form-group">
+    <label>{{localize "RECIPE-BOOK.Import.FilePath"}}</label>
+    <div class="file-picker-row">
+      <input type="text" name="filePath" value="" placeholder="{{localize 'RECIPE-BOOK.Import.FilePathPlaceholder'}}">
+      <button type="button" data-action="browse" title="{{localize 'RECIPE-BOOK.Import.Browse'}}">
+        <i class="fa-solid fa-folder-open"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>
+      <input type="checkbox" name="overwrite">
+      {{localize "RECIPE-BOOK.Import.Overwrite"}}
+    </label>
+  </div>
+
+  {{#if result}}
+    <div class="import-result">
+      <p>{{localize "RECIPE-BOOK.Import.ResultImported"}}: <strong>{{result.imported}}</strong></p>
+      <p>{{localize "RECIPE-BOOK.Import.ResultUpdated"}}: <strong>{{result.updated}}</strong></p>
+      <p>{{localize "RECIPE-BOOK.Import.ResultSkipped"}}: <strong>{{result.skipped}}</strong></p>
+      {{#if result.errors.length}}
+        <p class="errors-title">{{localize "RECIPE-BOOK.Import.ResultErrors"}}:</p>
+        <ul class="errors">
+          {{#each result.errors as |err|}}
+            <li>{{err}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  <footer>
+    <button type="button" data-action="import">
+      <i class="fa-solid fa-file-import"></i> {{localize "RECIPE-BOOK.Import.Button"}}
+    </button>
+  </footer>
+</div>

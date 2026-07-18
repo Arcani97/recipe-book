@@ -1,0 +1,39 @@
+<div class="recipe-assignments-content">
+  <div class="assignments-toolbar">
+    <button type="button" data-action="assign-all">
+      <i class="fa-solid fa-check-double"></i> {{localize "RECIPE-BOOK.Assignments.AssignAll"}}
+    </button>
+    <button type="button" data-action="unassign-all">
+      <i class="fa-solid fa-eraser"></i> {{localize "RECIPE-BOOK.Assignments.UnassignAll"}}
+    </button>
+  </div>
+  {{#each sections as |section|}}
+    <details class="player-section" open>
+      <summary>{{section.label}}</summary>
+      <ul class="recipes">
+        {{#each section.recipes as |recipe|}}
+          <li>
+            <details class="recipe-row">
+              <summary>{{recipe.name}}</summary>
+              {{#each recipe.playerGroups as |pg|}}
+                <div class="assign-player-group">
+                  <strong>{{pg.userName}}</strong>
+                  <ul>
+                    {{#each pg.actors as |a|}}
+                      <li>
+                        <label>
+                          <input type="checkbox" data-recipe-id="{{recipe.id}}" data-actor-id="{{a.id}}" {{#if a.assigned}}checked{{/if}}>
+                          {{a.name}}
+                        </label>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/each}}
+            </details>
+          </li>
+        {{/each}}
+      </ul>
+    </details>
+  {{/each}}
+</div>

@@ -29,6 +29,11 @@
            title="{{#if windowOpen}}{{localize 'RECIPE-BOOK.App.WindowOpen'}}{{else}}{{localize 'RECIPE-BOOK.App.WindowClosed'}}{{/if}}">
         <i class="fa-solid {{#if windowOpen}}fa-lock-open{{else}}fa-lock{{/if}}"></i>
       </div>
+      {{#if isGM}}
+        <button type="button" data-action="open-assignments" title="{{localize 'RECIPE-BOOK.Assignments.Title'}}">
+          <i class="fa-solid fa-users"></i>
+        </button>
+      {{/if}}
       <button type="button" data-action="collapse-all" title="{{localize 'RECIPE-BOOK.App.CollapseAll'}}">
         <i class="fa-solid fa-compress"></i>
       </button>

@@ -2,7 +2,7 @@
   "id": "recipe-book",
   "title": "Recipe Book",
   "description": "Adiciona um livro de receitas: o Mestre cria receitas (ingredientes -> produtos), atribui a personagens específicos e libera, ou bloqueia, os jogadores de fabricar os itens, consumindo os ingredientes e adicionando o produto final automaticamente a ficha.",
-  "version": "1.00",
+  "version": "1.01",
   "compatibility": {
     "minimum": "13",
     "verified": "13"

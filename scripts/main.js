@@ -1,8 +1,14 @@
 import { MODULE_ID } from "./constants.js";
 import { RecipeBookApp } from "./apps/recipe-book-app.js";
 import { RecipeEditorApp } from "./apps/recipe-editor-app.js";
+import { ImportRecipesApp } from "./apps/import-recipes-app.js";
+import { ExportRecipesApp } from "./apps/export-recipes-app.js";
+import { DeleteAllRecipesApp } from "./apps/delete-all-recipes-app.js";
+import { importRecipes, exportRecipes } from "./recipe-data.js";
 
 Hooks.once("init", () => {
+  console.log(`${MODULE_ID} | v${game.modules.get(MODULE_ID)?.version}`);
+
   game.settings.register(MODULE_ID, "recipes", {
     scope: "world",
     config: false,
@@ -17,12 +23,10 @@ Hooks.once("init", () => {
     default: false,
     onChange: () => {
       for (const app of RecipeBookApp.openInstances) app.render(false);
-      // Atualiza o controle integrado à lista de jogadores (GM).
       ui.players?.render();
     }
   });
 
-  // Configurável porque cada sistema de jogo guarda a quantidade do item em um campo diferente (dnd5e e a maioria dos sistemas usam "system.quantity").
   game.settings.register(MODULE_ID, "quantityPath", {
     name: "RECIPE-BOOK.Settings.QuantityPath.Name",
     hint: "RECIPE-BOOK.Settings.QuantityPath.Hint",
@@ -30,6 +34,33 @@ Hooks.once("init", () => {
     config: true,
     type: String,
     default: "system.quantity"
+  });
+
+  game.settings.registerMenu(MODULE_ID, "importRecipesMenu", {
+    name: "RECIPE-BOOK.Settings.ImportMenu.Name",
+    label: "RECIPE-BOOK.Settings.ImportMenu.Label",
+    hint: "RECIPE-BOOK.Settings.ImportMenu.Hint",
+    icon: "fa-solid fa-file-import",
+    type: ImportRecipesApp,
+    restricted: true
+  });
+
+  game.settings.registerMenu(MODULE_ID, "exportRecipesMenu", {
+    name: "RECIPE-BOOK.Settings.ExportMenu.Name",
+    label: "RECIPE-BOOK.Settings.ExportMenu.Label",
+    hint: "RECIPE-BOOK.Settings.ExportMenu.Hint",
+    icon: "fa-solid fa-file-export",
+    type: ExportRecipesApp,
+    restricted: true
+  });
+
+  game.settings.registerMenu(MODULE_ID, "deleteAllRecipesMenu", {
+    name: "RECIPE-BOOK.Settings.DeleteAllMenu.Name",
+    label: "RECIPE-BOOK.Settings.DeleteAllMenu.Label",
+    hint: "RECIPE-BOOK.Settings.DeleteAllMenu.Hint",
+    icon: "fa-solid fa-trash",
+    type: DeleteAllRecipesApp,
+    restricted: true
   });
 });
 
@@ -39,12 +70,9 @@ Hooks.on("updateSetting", setting => {
 });
 
 Hooks.once("ready", () => {
-  const mod = game.modules.get(MODULE_ID);
-  // Exposto para quem quiser abrir via macro: game.modules.get("recipe-book").api.RecipeBookApp
-  mod.api = { RecipeBookApp, RecipeEditorApp };
+  game.modules.get(MODULE_ID).api = { RecipeBookApp, RecipeEditorApp, importRecipes, exportRecipes };
 });
 
-/** Abre o Livro de Receitas — mas, se quem está tentando abrir for um jogador sem nenhum personagem próprio, mostra um aviso em vez de abrir a janela (não faz sentido um jogador sem personagem usar o livro, já que craftar sempre precisa de um personagem dono). */
 async function openRecipeBook() {
   if (!game.user.isGM) {
     const myActors = game.actors.filter(a => a.isOwner);
@@ -60,7 +88,6 @@ async function openRecipeBook() {
   new RecipeBookApp().render(true);
 }
 
-/** Adiciona um botão no topo da aba de Itens da barra lateral (acima de "Create Item"/"Create Folder") para abrir o Livro de Receitas — no mesmo estilo que o módulo Party Resources faz na aba de Atores — em vez de um ícone na barra de ferramentas do canvas. */
 Hooks.on("renderItemDirectory", (app, html) => {
   try {
     const $html = html?.jquery ? html : $(html);
@@ -81,12 +108,10 @@ Hooks.on("renderItemDirectory", (app, html) => {
   }
 });
 
-/** Integra o controle de abrir/fechar a Janela de Criação diretamente na lista de jogadores nativa do Foundry (o painel que mostra quem está online, no canto inferior esquerdo) — no mesmo estilo que módulos como o Breaktime fazem, em vez de uma janela flutuante à parte. Só aparece para o Mestre; jogadores não veem nada aqui. */
 Hooks.on("renderPlayers", (app, html) => {
   if (!game.user.isGM) return;
 
   try {
-    // Evita duplicar o controle em re-renderizações.
     $(".recipe-book-player-control", html).remove();
 
     const windowOpen = game.settings.get(MODULE_ID, "craftingWindowOpen");
@@ -108,7 +133,6 @@ Hooks.on("renderPlayers", (app, html) => {
       await game.settings.set(MODULE_ID, "craftingWindowOpen", !current);
     });
 
-    // Mesmo seletor usado pelo módulo Breaktime para se inserir na lista de jogadores: "#players-active .players-list".
     const anchor = $("#players-active .players-list", html);
     if (anchor.length) control.insertAfter(anchor);
     else $(html).append(control);
